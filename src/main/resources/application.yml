@@ -1,0 +1,17 @@
+## Local Configuration ##
+spring:
+  application:
+    name: data-consumer
+  datasource:
+    url: jdbc:h2:mem:db;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+  liquibase:
+    enabled: false
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+
+order_consuming_delay: ${ORDER_CONSUMING_DELAY:3}

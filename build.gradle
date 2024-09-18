@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.3'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id "io.freefair.lombok" version "8.10"
 }
 
 group = 'com.ing'
@@ -23,15 +24,47 @@ repositories {
 	mavenCentral()
 }
 
+List springBoot = [
+		'org.springframework.boot:spring-boot-starter',
+		'org.springframework.boot:spring-boot-starter-data-jpa',
+		'org.springframework.boot:spring-boot-starter-security'
+]
+
+def h2Version = "2.3.232"
+
+List h2 = [
+		"com.h2database:h2:${h2Version}"
+]
+
+def liquiBaseVersion = "4.29.1"
+def postgresqlVersion = "42.7.4"
+
+List db =[
+		"org.liquibase:liquibase-core:${liquiBaseVersion}"
+]
+
+def jacksonVersion = "2.17.2"
+
+List jackson = [
+		"com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+]
+
+def assertjVersion = "3.26.3"
+
+List testDependencies = [
+		'org.springframework.boot:spring-boot-starter-test',
+		'org.springframework.security:spring-security-test',
+		"org.assertj:assertj-core:${assertjVersion}"
+]
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.liquibase:liquibase-core'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+	implementation springBoot
+	implementation jackson
+	implementation db
+
+	runtimeOnly h2
+
+	testImplementation testDependencies
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
