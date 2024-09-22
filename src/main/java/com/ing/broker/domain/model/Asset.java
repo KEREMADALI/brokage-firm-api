@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
@@ -26,7 +28,9 @@ public class Asset {
   @GeneratedValue
   @Getter
   private UUID id;
+  @CreationTimestamp
   private Timestamp createdAt;
+  @UpdateTimestamp
   private Timestamp updatedAt;
 
   private UUID customerId;

@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 public interface AssetRepo extends CrudRepository<Asset, UUID> {
 
-  Optional<Asset> findAllByCustomerIdAndName(UUID customerId, String assetName);
+  Optional<Asset> findByCustomerIdAndName(UUID customerId, String assetName);
 }

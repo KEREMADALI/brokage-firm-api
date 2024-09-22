@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -26,7 +28,9 @@ public class Order {
   @GeneratedValue
   @Getter
   private UUID id;
+  @CreationTimestamp
   private Timestamp createdAt;
+  @UpdateTimestamp
   private Timestamp updatedAt;
 
   private UUID customerId;

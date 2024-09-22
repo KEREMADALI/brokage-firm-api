@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.3.3'
+	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.6'
 	id "io.freefair.lombok" version "8.10"
 }
@@ -27,7 +27,14 @@ repositories {
 List springBoot = [
 		'org.springframework.boot:spring-boot-starter',
 		'org.springframework.boot:spring-boot-starter-data-jpa',
-		'org.springframework.boot:spring-boot-starter-security'
+		'org.springframework.boot:spring-boot-starter-security',
+		'org.springframework.boot:spring-boot-starter-web'
+]
+
+def swaggerVersion = '2.6.0'
+
+List swagger = [
+		"org.springdoc:springdoc-openapi-starter-webmvc-ui:${swaggerVersion}"
 ]
 
 def h2Version = "2.3.232"
@@ -37,7 +44,6 @@ List h2 = [
 ]
 
 def liquiBaseVersion = "4.29.1"
-def postgresqlVersion = "42.7.4"
 
 List db =[
 		"org.liquibase:liquibase-core:${liquiBaseVersion}"
@@ -46,21 +52,25 @@ List db =[
 def jacksonVersion = "2.17.2"
 
 List jackson = [
-		"com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+		"com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+		"com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
 ]
 
 def assertjVersion = "3.26.3"
+def mockitoVersion = "5.13.0"
 
 List testDependencies = [
 		'org.springframework.boot:spring-boot-starter-test',
 		'org.springframework.security:spring-security-test',
-		"org.assertj:assertj-core:${assertjVersion}"
+		"org.assertj:assertj-core:${assertjVersion}",
+		"org.mockito:mockito-core:${mockitoVersion}"
 ]
 
 dependencies {
 	implementation springBoot
 	implementation jackson
 	implementation db
+	implementation swagger
 
 	runtimeOnly h2
 

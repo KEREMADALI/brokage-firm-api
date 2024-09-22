@@ -1,7 +1,8 @@
 ## Local Configuration ##
 spring:
-  application:
-    name: data-consumer
+  h2:
+    console:
+      enabled: true
   datasource:
     url: jdbc:h2:mem:db;DB_CLOSE_ON_EXIT=FALSE
     driverClassName: org.h2.Driver
@@ -14,4 +15,11 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
 
-order_consuming_delay: ${ORDER_CONSUMING_DELAY:3}
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+
+springdoc:
+  packages-to-scan: com.ing.broker.api
