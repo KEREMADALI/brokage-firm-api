@@ -27,3 +27,4 @@ Password : <Logged on terminal>
 ## Future Improvements
 - Add input validation on controller
 - Add controller unit tests
+- Add input, output and endpoint explanations on Swagger
